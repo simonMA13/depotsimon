@@ -1,0 +1,58 @@
+---
+title: "Rapport graphique moche"
+author: "simon meffre alexandre"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: '3'
+  html_document:
+    code_folding: hide
+    fig_caption: true
+    number_sections: true
+    toc: true
+    toc_depth: 3
+    toc_float:
+      collapsed: true
+      smooth_scroll: true
+bibliography: biblio/test_biblio.bib
+csl: "biblio/isara-iso-690.csl"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(ggplot2)
+```
+
+#Introduction
+
+Dans le cadre de notre formation, Mr. Payet nous a demandé de réaliser le graphique le plus moche possible. Pour se faire, nous avons utilisé les données de starwars directement sur R grace au package dplyr.la base de données possèdent `r nrow(starwars)` lignes. De plus nous devions utiliser ggplot2 pour construire le graphique. en effet il est plus simple de modifier un graphique fait à partir de ggplot que avec plot.
+
+
+```{r data}
+data("starwars")
+```
+
+```{r affiche}
+head(starwars)
+```
+head() permet de visualiser les premières lignes du tableau et donc de visualiser les variable qui le compose. Pour mon graphique j'ai pris height et sex, pour avoir une variable qualitative et quantitative.
+
+# Graphique
+
+
+
+```{r code, echo=TRUE, warning=FALSE}
+ggplot(data = starwars, mapping = aes(x= height, y= sex))+
+  geom_bin2d()+
+  theme_get()+
+  coord_polar(theta = "y", direction=1)
+```
+
+Mon choix pour le geom_bin2d était aléatoire apres plusieurs éssais j'ai décidé de prendre celui-ci. ensuite j'ai rajouter un theme pour que cela perturbe la personne qui le lit. et enfin j'ai souhaité changer la forme du graphique lui-même en rond pour que cela perde encore plus le lecteur. j'ai choisi ue se soit l'axe y qui se courbe et ensuite j'ai décider que cela tourne dans le sens anti horaire avec le 1.
+
+# difficulté
+malheureusement, aillant d'autre problème de code. je n'ai pas eu le temps de finir mon graphique. voici le ma biblio @noauthor_chenopode_nodate
+
+
