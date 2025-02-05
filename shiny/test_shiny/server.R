@@ -19,10 +19,11 @@ function(input, output, session) {
         bins <- seq(min(x), max(x), length.out = input$bins + 1)
 
         # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white',
+        hist(x, breaks = bins, col = input$couleur, border = 'white',
              xlab = 'Waiting time to next eruption (in mins)',
              main = 'Histogram of waiting times')
 
     })
+    output$texte<- renderText({c("salut")})
 
 }
